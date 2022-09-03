@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body></body>
+
+<p id='footer'>This page is to meant to test some quick JS ideas in the dev console</p>
+
+</body>
+<script>
+const dbSpec = {
+    name: { type: String, required: true },
+    email: String,
+    phoneNumber: String,
+    address: {
+        line1: String,
+        line2: String,
+        city: String,
+        state: String,
+        zip: String
+    },
+    created: { type: Date, default: Date.now }
+};
+function walkObj(obj) {
+    let output = '\n';
+    for (const key in obj) {
+        output += `${key}: ${obj}\n`;
+    }
+    return output;
+}
+</script>
+</html>

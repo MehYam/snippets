@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    table {
+      min-width: 100%;
+      border: 1px solid black;
+      border-bottom: none;
+
+      display: grid;
+      border-collapse: collapse;
+      grid-template-columns: 
+        7em
+        1fr 
+        1fr 
+        2fr 
+        1fr 
+        minmax(0px, 50px)
+        1fr;
+      place-items: stretch;
+    }
+
+    thead,
+    tbody,
+    tr {
+      display: contents
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #6c7ae0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #6c7ae0;
+      color: white;      
+    }
+
+    td:nth-child(2) {
+      text-align: right;
+    }
+    td:nth-child(3) {
+      text-align: center;
+    }
+    tr:nth-child(even) td {
+      background: #f8f6ff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Colgroupx</h2>
+  <p>Add the a colgroup with a col element that spans over two columns to define a style for the two columns:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>MON</th>
+        <th>TUE</th>
+        <th>WED</th>
+        <th>THU</th>
+        <th>FRI</th>
+        <th>SAT</th>
+        <th>SUN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+        <td>21</td>
+      </tr>
+      <tr>
+        <td valign="bottom">22</td>
+        <td><select style="height: 40px"></select></td>
+        <td>24</td>
+        <td>25</td>
+        <td>26</td>
+        <td>27</td>
+        <td>28</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    I've tried many different things to get that last row to center vertically AND take up height 100% 
+    so that the borders draw in the right place - no dice.  You can get one, but not the other.  The
+    only solution would be to make each cell its own flex container, which seems extreme.
+    <br/>
+    For now, we'll hack it by ensuring that our tables all have cell contents of the same height.
+    Practically, this means manually heighting any table that contains controls
+  </div>
+</body>
+
+</html>
