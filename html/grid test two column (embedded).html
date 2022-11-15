@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  color: white;
+  font-weight: bold;
+}
+hr {
+  margin: 50px;
+}
+.grid {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  gap: 1px;
+}
+.paper {
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+.header {
+  grid-row: 1;
+  background-color: rgb(41, 173, 52);
+}
+.content {
+  grid-row: 2;
+  overflow-y: auto;
+}
+.footer {
+  grid-row: 3;
+  background-color:rgb(70, 0, 77);
+}
+
+.embedded {
+  box-sizing: border-box;  /* else you get vert scrollbar */
+  height: 100%;
+  margin: 0;
+
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 1px;
+  background-color:rgb(61, 61, 61);
+}
+.embeddedHeader {
+  grid-row: 1;
+}
+.embeddedContent {
+  grid-row: 2;
+  height: 100%;
+  overflow-y: auto;
+}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="header paper">A header</div>
+    <div class="content">
+      <div class="embedded paper">
+        <div class="embeddedHeader">Pane with sticky header</div>
+        <div class="embeddedContent">
+          <hr/><hr/><hr/><hr/><hr/>
+          <hr/><hr/><hr/><hr/><hr/>
+        </div>
+      </div>
+    </div>
+    <div class="footer paper">A footer</div>
+  </div>
+</body>
+</html>
