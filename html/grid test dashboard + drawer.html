@@ -14,8 +14,13 @@ hr {
   height: 100vh;
   display: grid;
   grid-template-rows: max-content 1fr max-content;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 65px 1fr;
   gap: 1px;
+
+  transition: grid-template-columns 0.25s;
+}
+.top-expand {
+  grid-template-columns: 200px 1fr;
 }
 .paper {
   padding: 5px;
@@ -65,7 +70,7 @@ hr {
 </style>
 </head>
 <body>
-  <div class="top">
+  <div id="top" class="top">
     <div class="header paper">A header</div>
     <div class="navbar paper">
       <div>nav 1</div>
@@ -74,6 +79,8 @@ hr {
       <div>nav 4</div>
       <div>nav 5</div>
       <div>nav 6</div>
+      <button onclick="narrow()">&lt;</button>
+      <button onclick="wide()">&gt;</button>
     </div>
     <div class="content">
       <div class="embedded paper">
@@ -87,4 +94,16 @@ hr {
     <div class="footer paper">A footer</div>
   </div>
 </body>
+<script>
+  function wide() {
+    console.log('wide');
+    const t = document.getElementById('top');
+    t.classList.add('top-expand');
+  }
+  function narrow() {
+    console.log('narrow');
+    const t = document.getElementById('top');
+    t.classList.remove('top-expand');
+  }
+</script>
 </html>
