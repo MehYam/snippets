@@ -9,15 +9,7 @@
 
       display: grid;
       border-collapse: collapse;
-      grid-template-columns: 
-        7em
-        1fr 
-        1fr 
-        2fr 
-        1fr 
-        minmax(0px, 50px)
-        1fr;
-      place-items: stretch;
+      grid-template-columns: 7em 1fr 1fr 2fr 1fr minmax(0px, 50px) 1fr;
     }
 
     thead,
@@ -28,10 +20,13 @@
 
     th,
     td {
-      border-bottom: 1px solid #6c7ae0;
+      align-self: center;
+      justify-self: stretch;
+      text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      /*background: rgb(196, 191, 191);*/
     }
 
     th {
@@ -39,14 +34,13 @@
       color: white;      
     }
 
-    td:nth-child(2) {
-      text-align: right;
-    }
-    td:nth-child(3) {
-      text-align: center;
-    }
     tr:nth-child(even) td {
-      background: #f8f6ff;
+      border-bottom: 1px solid #6c7ae0;
+      grid-column: 1 / 8;
+      padding: 0;
+    }
+    tr:nth-child(4n + 3) td {
+      background: #beb6da;
     }
   </style>
 </head>
@@ -58,53 +52,17 @@
 
   <table>
     <thead>
-      <tr>
-        <th>MON</th>
-        <th>TUE</th>
-        <th>WED</th>
-        <th>THU</th>
-        <th>FRI</th>
-        <th>SAT</th>
-        <th>SUN</th>
-      </tr>
+      <tr><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th><th>SUN</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
-        <td>14</td>
-      </tr>
-      <tr>
-        <td>15</td>
-        <td>16</td>
-        <td>17</td>
-        <td>18</td>
-        <td>19</td>
-        <td>20</td>
-        <td>21</td>
-      </tr>
-      <tr>
-        <td valign="bottom">22</td>
-        <td><select style="height: 40px"></select></td>
-        <td>24</td>
-        <td>25</td>
-        <td>26</td>
-        <td>27</td>
-        <td>28</td>
-      </tr>
+      <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+      <tr><td></td></tr>
+      <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+      <tr><td></td></tr>
+      <tr><td>15</td><td>16</td><td><select style="height: 40px"></select></td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+      <tr><td></td></tr>
+      <tr><td>22</td><td><select style="height: 40px"></select></td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+      <tr><td></td></tr>
     </tbody>
   </table>
 
@@ -115,6 +73,13 @@
     <br/>
     For now, we'll hack it by ensuring that our tables all have cell contents of the same height.
     Practically, this means manually heighting any table that contains controls
+  </div>
+  <hr/>
+  <div>
+    <strong>EDIT - FOUND A HACK:</strong>
+    by making every other row empty with just a border, we can let cells use align-self: center to vertically center,
+    and borders are now drawn in a dedicated single column-spanning cell.  <strong>Problem remains</strong>:  backgrounds
+    are uneven because the cells with content have different heights
   </div>
 </body>
 
