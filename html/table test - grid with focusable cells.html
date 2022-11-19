@@ -10,7 +10,7 @@
       display: grid;
       border-collapse: collapse;
       grid-template-columns: 
-        7em
+        1fr
         1fr 
         1fr 
         2fr 
@@ -31,7 +31,14 @@
       border-bottom: 1px solid #6c7ae0;
       overflow: hidden;
       text-overflow: ellipsis;
+      text-align: center;
       white-space: nowrap;
+    }
+    td:hover {
+      background: rgb(245, 183, 183);
+    }
+    td:focus {
+      font-weight: bold;
     }
 
     th {
@@ -39,12 +46,6 @@
       color: white;      
     }
 
-    td:nth-child(2) {
-      text-align: right;
-    }
-    td:nth-child(3) {
-      text-align: center;
-    }
     tr:nth-child(even) td {
       background: #f8f6ff;
     }
@@ -53,9 +54,12 @@
 
 <body>
 
-  <h2>Colgroupx</h2>
-  <p>Add the a colgroup with a col element that spans over two columns to define a style for the two columns:</p>
+  <h2>Focus and tab index</h2>
+  <div>
+    Testing trying to get focusable editable cells in a grid-based table, for OrderUp's Table.  The first few cells are focusable
+  </div>
 
+  <div tabindex="0">tab-indexed div</div>
   <table>
     <thead>
       <tr>
@@ -70,11 +74,11 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
+        <td tabindex="0" onfocus="onFocus(event)">1 "one"</td>
+        <td tabindex="0">2</td>
+        <td tabindex="0">3</td>
+        <td tabindex="0">4</td>
+        <td tabindex="0">5</td>
         <td>6</td>
         <td>7</td>
       </tr>
@@ -107,15 +111,8 @@
       </tr>
     </tbody>
   </table>
-
-  <div>
-    I've tried many different things to get that last row to center vertically AND take up height 100% 
-    so that the borders draw in the right place - no dice.  You can get one, but not the other.  The
-    only solution would be to make each cell its own flex container, which seems extreme.
-    <br/>
-    For now, we'll hack it by ensuring that our tables all have cell contents of the same height.
-    Practically, this means manually heighting any table that contains controls
-  </div>
 </body>
-
+<script>
+  function onFocus(e) { console.log(`focus: ${e.target}`); }
+</script>
 </html>

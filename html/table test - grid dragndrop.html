@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <style>
     table {
       min-width: 100%;
       border: 1px solid black;
       border-bottom: none;
+      user-select: none;
 
       display: grid;
       border-collapse: collapse;
-      grid-template-columns: 
-        7em
-        1fr 
-        1fr 
-        2fr 
-        1fr 
-        minmax(0px, 50px)
-        1fr;
+      grid-template-columns:
+        7em 1fr 1fr 2fr 1fr minmax(0px, 50px) 1fr;
       place-items: stretch;
     }
 
@@ -36,15 +32,17 @@
 
     th {
       background: #6c7ae0;
-      color: white;      
+      color: white;
     }
 
     td:nth-child(2) {
       text-align: right;
     }
+
     td:nth-child(3) {
       text-align: center;
     }
+
     tr:nth-child(even) td {
       background: #f8f6ff;
     }
@@ -79,7 +77,7 @@
         <td>7</td>
       </tr>
       <tr>
-        <td>8</td>
+        <td draggable="true" ondragstart="dragStart()" ondragend="dragEnd()">8</td>
         <td>9</td>
         <td>10</td>
         <td>11</td>
@@ -109,13 +107,21 @@
   </table>
 
   <div>
-    I've tried many different things to get that last row to center vertically AND take up height 100% 
-    so that the borders draw in the right place - no dice.  You can get one, but not the other.  The
+    I've tried many different things to get that last row to center vertically AND take up height 100%
+    so that the borders draw in the right place - no dice. You can get one, but not the other. The
     only solution would be to make each cell its own flex container, which seems extreme.
-    <br/>
+    <br />
     For now, we'll hack it by ensuring that our tables all have cell contents of the same height.
     Practically, this means manually heighting any table that contains controls
   </div>
 </body>
+<script>
+  function dragStart() {
+    console.log('dragStart')
+  }
+  function dragEnd() {
+    console.log('dragEnd')
+  }
+</script>
 
 </html>
