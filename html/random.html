@@ -1,0 +1,41 @@
+<html>
+
+</html>
+<script>
+    const terminus = [];
+    function group(rows, columns) {
+        const groups = {}; // Create an empty object to store the groups.
+
+        const lastCol = columns[columns.length - 1];
+        for (const row of rows) {
+            let currentGroup = groups;
+
+            // build the buckets
+            for (const column of columns) {
+                const value = row[column];
+
+                if (!currentGroup[value]) {
+                    currentGroup[value] = column === lastCol ? [] : {};
+                }
+                currentGroup = currentGroup[value]; // Move to the next nested group.
+            }
+            // add the row to its bucket
+            currentGroup.push(row);
+        }
+        return groups;
+    }
+
+    const rows = [
+        { id: 1, name: 'Alice', state: 'New York', city: 'New York' },
+        { id: 2, name: 'Bob', state: 'California', city: 'San Francisco' },
+        { id: 3, name: 'Charlie', state: 'New York', city: 'Albany' },
+        { id: 4, name: 'Dave', state: 'California', city: 'Los Angeles' },
+        { id: 5, name: 'Eve', state: 'New York', city: 'Rochester' },
+        { id: 6, name: 'Fran', state: 'New York', city: 'Rochester' },
+        { id: 7, name: 'Gregor', state: 'California', city: 'Los Angeles' },
+    ];
+
+    const columns = ['state', 'city'];
+
+    console.log(JSON.stringify(group(rows, columns), null, 2));
+</script>
