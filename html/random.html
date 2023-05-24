@@ -38,4 +38,13 @@
     const columns = ['state', 'city'];
 
     console.log(JSON.stringify(group(rows, columns), null, 2));
+
+    const someObj = {
+        foo: 'bar',
+        fn: function() { console.log(this.foo) }, // 'this' is bound
+        fn2: () => { console.log(this.foo) }      // 'this' is not
+    };
+
+    someObj.fn();
+    someObj.fn2();
 </script>
