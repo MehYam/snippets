@@ -1,0 +1,79 @@
+<html style='background-color: black'>
+
+</html>
+<script>
+    const containers = [
+        { name: 'large', cap: 75 },
+        { name: 'medium', cap: 45 },
+        { name: 'small', cap: 22 },
+        { name: 'tiny', cap: 2.5 }
+    ];
+
+    // i.e. how many smaller containers are we willing to use
+    // smaller = 1 works, but might waste a lot of container space
+    const smaller = 2;
+    function testFill(amount) {
+        const payload = [];
+        let remaining = amount;
+        for (let i = 0; i < containers.length && remaining > 0; ++i) {
+            const container = containers[i];
+            const smallest = i === containers.length - 1;
+
+            // see how many of the largest we fill
+            const filled = Math.floor(remaining / container.cap);
+            remaining = remaining % container.cap;
+
+            // peek at the next size, might need to add one more container
+            if (smallest || remaining > (smaller * containers[i + 1].cap)) {
+                // don't have another smaller container that fits the remainder,
+                // hence add one more and stop
+                payload.push({ container, count: filled + 1 });
+                break;
+            }
+            if (smallest || filled >= 1) {
+                payload.push({ container, count: filled });
+            }
+        }
+
+        console.log(JSON.stringify(payload, null, 2));
+    }
+
+    const nextSizeAllow = 4;
+    function testFill2(amount) {
+        const payload = [];
+        let remaining = amount;
+        for (let i = 0; i < containers.length && remaining > 0; ++i) {
+            const container = containers[i];
+            const smallest = i === containers.length - 1;
+
+            // how many can we fill
+            const filled = Math.floor(remaining / container.cap);
+            remaining = remaining % container.cap;
+
+            if (filled >= 1) {
+                payload.push({ container, count: filled, total: filled * container.cap });
+            }
+
+            // peek at the next size, decide how to handle the remainder
+            if (smallest) {
+                if (remaining > 0) {
+                    payload.push({ container, count: 1, total: remaining });
+                }
+            }
+            else if (remaining > (nextSizeAllow * containers[i + 1].cap)) {
+                // don't have another smaller container that fits the remainder,
+                // hence add one more partially filled, and stop
+                payload.push({ container, count: 1, total: remaining });
+                remaining = 0;
+                break;
+            }
+        }
+
+        console.log(JSON.stringify(
+            payload.map(p => `${p.container.name} x${p.count} ${p.total}/${p.container.cap * p.count}`),
+            null, 2)
+        );
+    }
+
+
+</script>

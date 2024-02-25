@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      width: 400px;
+      border: 1px solid black;
+      border-bottom: none;
+
+      display: grid;
+      border-collapse: collapse;
+      grid-template-columns: 3px 3px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    thead,
+    tbody,
+    tr {
+      display: contents
+    }
+
+    th,
+    td {
+      align-self: center;
+      justify-self: stretch;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      /*background: rgb(196, 191, 191);*/
+    }
+
+    .floatHeader1 {
+      background-color: rgb(179, 240, 179);
+      grid-column: 1 / span 9;
+      text-align: left;
+    }
+    .floatHeader2 {
+      grid-column: 2 / span 8;
+      text-align: left;
+    }
+
+    th {
+      background: #6c7ae0;
+      color: white;      
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>"CSS grid"-based table implementation:</h1>
+
+  <table>
+    <thead>
+      <tr><th>a</th><th>b</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th><th>SUN</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class='floatHeader1'>Header 1</td></tr>
+      <tr><td class='floatHeader2'>Header 2</td><td></tr>
+      <tr><td></td><td></td><td>*1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+      <tr><td></td><td></td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+      <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+      <tr><td></td><td></td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+      <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+      <tr><td></td><td></td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+      <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+      <tr><td></td><td></td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+    </tbody>
+  </table>
+
+  <div>
+    This mimics the ReportBuilder v1 headers using css grid column spanning
+  </div>
+</body>
+
+</html>
